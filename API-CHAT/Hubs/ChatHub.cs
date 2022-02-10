@@ -10,6 +10,7 @@
         public Task SendMessage(ChatDTO message)
         {
             return Clients.All.ReceiveMessage(message);
+
         }
     }
 }
