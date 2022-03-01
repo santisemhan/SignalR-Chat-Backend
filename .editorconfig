@@ -2,3 +2,12 @@
 
 # CS0618: El tipo o el miembro están obsoletos
 dotnet_diagnostic.CS0618.severity = none
+
+# CS1591: Falta el comentario XML para el tipo o miembro visible públicamente
+dotnet_diagnostic.CS1591.severity = none
+
+# IDE0058: El valor de la expresión no se utiliza nunca.
+dotnet_diagnostic.IDE0058.severity = none
+
+# CS4014: Dado que no se esperaba esta llamada, la ejecución del método actual continuará antes de que se complete la llamada
+dotnet_diagnostic.CS4014.severity = none
