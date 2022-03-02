@@ -1,5 +1,6 @@
 ﻿namespace API_CHAT.ViewModels.Chat
 {
+    using System;
     public class ChatDTO
     {
         /// <summary>
@@ -26,6 +27,11 @@
         /// Imagen del usuario a enviar
         /// </summary>
         public string ImageURL { get; set; }
+
+        /// <summary>
+        /// Fecha y horario del mensaje enviado
+        /// </summary>
+        public DateTime DateTime { get; set; }
 
     }
 }
