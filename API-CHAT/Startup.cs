@@ -30,6 +30,7 @@ namespace API_CHAT
 
             services.AddSignalR(options =>
             {
+                options.MaximumReceiveMessageSize = null; // No limit!!
                 options.EnableDetailedErrors = true;
             });
 
