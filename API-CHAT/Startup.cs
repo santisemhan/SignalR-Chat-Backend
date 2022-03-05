@@ -38,9 +38,12 @@ namespace API_CHAT
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200")
+                    // TODO: set depends the environment
+                    builder.WithOrigins("http://localhost:4200",
+                        "https://chat-application.azurewebsites.net")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
+                    .WithExposedHeaders("Content-Disposition")
                     .AllowCredentials();
                 });
             });
@@ -52,6 +55,10 @@ namespace API_CHAT
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             var webSocketOptions = new WebSocketOptions()
             {
@@ -59,11 +66,9 @@ namespace API_CHAT
                 ReceiveBufferSize = 4 * 1024
             };
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-
-            }
+            // TODO: set depends the environment
+            webSocketOptions.AllowedOrigins.Add("https://chat-application.azurewebsites.net");
+            webSocketOptions.AllowedOrigins.Add("http://localhost:4200");
 
             app.UseWebSockets(webSocketOptions);
 
