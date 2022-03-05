@@ -40,7 +40,7 @@ namespace API_CHAT
                 {
                     // TODO: set depends the environment
                     builder.WithOrigins("http://localhost:4200",
-                        "https://chat-application.azurewebsites.net")
+                        "https://ch4t.azurewebsites.net/")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .WithExposedHeaders("Content-Disposition")
@@ -67,7 +67,7 @@ namespace API_CHAT
             };
 
             // TODO: set depends the environment
-            webSocketOptions.AllowedOrigins.Add("https://chat-application.azurewebsites.net");
+            webSocketOptions.AllowedOrigins.Add("https://ch4t.azurewebsites.net/");
             webSocketOptions.AllowedOrigins.Add("http://localhost:4200");
 
             app.UseWebSockets(webSocketOptions);
