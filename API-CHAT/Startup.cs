@@ -33,20 +33,20 @@ namespace API_CHAT
                 options.MaximumReceiveMessageSize = null; // No limit!!
                 options.EnableDetailedErrors = true;
             });
-
+           
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder =>
-                {
-                    // TODO: set depends the environment
-                    builder.WithOrigins("http://localhost:4200",
-                        "https://ch4t.azurewebsites.net/")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .WithExposedHeaders("Content-Disposition")
-                    .AllowCredentials();
-                });
+                options.AddPolicy(name: "AllowOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200",
+                       "https://ch4t.azurewebsites.net")
+                           .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                    });
             });
+
 
             services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
 
@@ -67,7 +67,7 @@ namespace API_CHAT
             };
 
             // TODO: set depends the environment
-            webSocketOptions.AllowedOrigins.Add("https://ch4t.azurewebsites.net/");
+            webSocketOptions.AllowedOrigins.Add("https://ch4t.azurewebsites.net");
             webSocketOptions.AllowedOrigins.Add("http://localhost:4200");
 
             app.UseWebSockets(webSocketOptions);
