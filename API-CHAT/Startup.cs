@@ -78,20 +78,13 @@ namespace API_CHAT
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseCors();
-
+            app.UseCors("AllowOrigin");
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
-
-            app.UseSignalR(builder =>
-            {
-                builder.MapHub<ChatHub>("/chat");               
-            });
-
-
         }
     }
 }
